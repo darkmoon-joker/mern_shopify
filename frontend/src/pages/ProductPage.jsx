@@ -1,5 +1,4 @@
 import React from "react"
-import Products from "../Products"
 import { Card } from "react-bootstrap"
 import Rating from "../components/Rating";
 import { Link } from "react-router-dom";

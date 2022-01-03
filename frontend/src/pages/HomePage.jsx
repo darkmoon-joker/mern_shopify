@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios"
+import React, {  useEffect } from "react"
+import {useDispatch, useSelector} from "react-redux"
 import { Row, Col } from "react-bootstrap"
+import {listProducts} from '../actions/productActions'
 import ProductPage from "./ProductPage"
-
+import Loader from "../components/shared/Loader"
+import Message from "../components/shared/Message"
 const HomePage = () => {
 
-    const [Products, setProducts] = useState([])
+    const dispatch=useDispatch();
+    const productList = useSelector((state) => state.productList);
+    const { loading, error, products } = productList;
     useEffect(() => {
-        const fetchProdutcs = async () => {
-            const { data } = await axios.get('/products')
-            setProducts(data)
-        }
-
-        fetchProdutcs()
-    }, [])
-
+        dispatch(listProducts())
+    }, [dispatch])
+    
     return (
         <React.Fragment>
-            <Row>
-                {Products.map(product => <Col md={4} key={product._id}><ProductPage product={product} /></Col>)}
-            </Row>
+            {loading ? (
+                <Loader />
+            ) : error ? (
+                <Message>{error}</Message>
+            ) : (
+                <Row>
+                {products.map((product) => (
+                    <Col key={product._id} md={3}>
+                    <ProductPage product={product} />
+                    </Col>
+                ))}
+                </Row>
+            )}
         </React.Fragment>
     )
 }
