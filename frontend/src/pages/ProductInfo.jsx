@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
-import axios from "axios"
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Button, Image, ListGroupItem, Form, } from "react-bootstrap";
 import Rating from "../components/Rating";
+import { listProductDetails } from "../actions/productActions";
+import { useNavigate } from "react-router-dom";
 
-const ProductInfo = () => {
-
+const ProductInfo = ({match}) => {
+    
+    const history=useNavigate();
     const { id } = useParams();
-    const [product, setProducts] = useState([])
-    useEffect(() => {
-        const fetchProdutcs = async () => {
-            const { data } = await axios.get(`/api/products/${id}`)
-            setProducts(data)
-        }
+    const [qty, setQty] = useState(1);
+    const dispatch=useDispatch();
+    const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
-        fetchProdutcs()
-    }, [])
+  useEffect(() => {
+    dispatch(listProductDetails(id));
+  }, [dispatch, match]);
+
+  const addToCartHandler = () => {
+  
+    history(`/cart/${id}?qty=${qty}`);
+  };
 
     return (
         <div>
@@ -49,10 +56,32 @@ const ProductInfo = () => {
                             </Col>
                         </Row>
                     </ListGroupItem>
+                   
+                    {product.countInStock >0  && (
+                        <ListGroupItem>
+                        <Row>
+                            <Col>Qty</Col>
+                            
+                            <Form.Control
+                            as="select"
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
+                            >
+                            {[...Array(product.countInStock).keys()].map((x) => (
+                                <option key={x+1 } value={x+1 }>
+                                {x+1}
+                                </option>
+                            ))}
+                            </Form.Control>
+                        </Row>
+                        </ListGroupItem>
+                    )}
+
                     <ListGroupItem>
                         <Button
                             className="btn-block"
                             type="button"
+                            onClick={addToCartHandler}
                         >
                             Add to cart
                         </Button>
