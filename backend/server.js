@@ -4,9 +4,11 @@ const products = require('../frontend/src/Products')
 const dotenv = require('dotenv')
 const connectDb = require('./config/config')
 const productsRoutes = require('./routes/productsRoute')
+const usersRoutes = require('./routes/UsersRoute')
 dotenv.config()
 connectDb();
-const app = express()
+const app = express();
+app.use(express.json())
 
 const PORT = process.env.PORT || 1000;
 
@@ -15,6 +17,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api",productsRoutes);
+app.use("/api",usersRoutes);
 app.use(errorHandler)
 
 app.listen(PORT, () => {
