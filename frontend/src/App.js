@@ -7,6 +7,11 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ProductInfo from "./pages/ProductInfo"
 import CartPage from "./pages/CartPage"
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+import ProfilePage from "./pages/ProfilePage"
+import ShippingPage from "./pages/ShippingPage"
+import PaymentPage from "./pages/PaymentPage"
 
 function App() {
 
@@ -17,6 +22,11 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<HomePage />} exact />
+            <Route path="/login" element={<LoginPage />} exact />
+            <Route path="/shipping" element={<ShippingPage />} exact />
+            <Route path="/payment" element={<PaymentPage />} exact />
+            <Route path="/profile" element={<ProfilePage />} exact />
+            <Route path="/register" element={<RegisterPage />}  />
             <Route path="/product/:id" element={<ProductInfo />} exact />
             <Route path="/cart">
             <Route path=":id" element={<CartPage />} />
