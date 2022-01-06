@@ -18,7 +18,7 @@ const Header = () => {
       <Navbar bg="dark" expand="lg" variant="dark" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Online Shop</Navbar.Brand>
+            <Navbar.Brand>Shopify</Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -27,7 +27,7 @@ const Header = () => {
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <i className="fas fa-shopping-cart"></i>
-                  &nbsp; cart
+                  &nbsp; Cart
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
@@ -43,7 +43,7 @@ const Header = () => {
                 <LinkContainer to="/login">
                   <Nav.Link>
                     <i className="fas fa-user"></i>
-                    &nbsp; singin
+                    &nbsp; SignIn
                   </Nav.Link>
                 </LinkContainer>
               )}

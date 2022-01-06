@@ -12,6 +12,8 @@ import RegisterPage from "./pages/RegisterPage"
 import ProfilePage from "./pages/ProfilePage"
 import ShippingPage from "./pages/ShippingPage"
 import PaymentPage from "./pages/PaymentPage"
+import PlaceOrderPage from "./pages/PlaceOrderPage"
+import OrderPage from "./pages/OrderPage"
 
 function App() {
 
@@ -21,10 +23,11 @@ function App() {
       <main style={{ minHeight: "80vh" }}>
         <Container>
           <Routes>
-            <Route path="/" element={<HomePage />} exact />
             <Route path="/login" element={<LoginPage />} exact />
             <Route path="/shipping" element={<ShippingPage />} exact />
+            <Route path="/placeorder" element={<PlaceOrderPage />} exact />
             <Route path="/payment" element={<PaymentPage />} exact />
+            <Route path="/order/:id" element={<OrderPage />} exact />
             <Route path="/profile" element={<ProfilePage />} exact />
             <Route path="/register" element={<RegisterPage />}  />
             <Route path="/product/:id" element={<ProductInfo />} exact />
@@ -32,6 +35,7 @@ function App() {
             <Route path=":id" element={<CartPage />} />
              <Route path="" element={<CartPage />} />
             </Route>
+            <Route path="/" element={<HomePage />} exact />
             
           </Routes>
         </Container>

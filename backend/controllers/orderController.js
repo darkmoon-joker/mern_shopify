@@ -71,4 +71,4 @@ const getMyOrders = asyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-module.exports = { addOrderItem, getOrderById, updateOrderToPaid, getMyOrders };
+module.exports = { addOrderItem, getOrderById, updateOrderToPaid , getMyOrders};

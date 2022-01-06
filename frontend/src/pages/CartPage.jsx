@@ -43,7 +43,7 @@ const CartPage = ({ match }) => {
   };
 
   const checkout = () => {
-    history("/login?redirect=shipping");
+    history("/shipping");
   };
   return (
     <>

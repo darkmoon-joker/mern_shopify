@@ -7,7 +7,7 @@ import {
   } from "./reducers/productReducer";
 
 import { cartReducer } from "./reducers/cartReducer";
-import { orderCreateReducer } from "./reducers/orderReducer";
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderPayReducer } from "./reducers/orderReducer";
 import { userLoginReducer , userRegisterReducer, userDetailsReducer, userUpdateProfileReducer} from "./reducers/userReducers";
 
 
@@ -31,7 +31,10 @@ const reducer = combineReducers({
     userRegister : userRegisterReducer,
     userDetails : userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
-    orderCreate: orderCreateReducer
+    orderCreate: orderCreateReducer,
+    orderDetails : orderDetailsReducer,
+    orderPay : orderPayReducer,
+    orderListMy : orderListMyReducer
 });
 
 const initialState = {

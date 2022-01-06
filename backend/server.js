@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const connectDb = require('./config/config')
 const productsRoutes = require('./routes/productsRoute')
 const usersRoutes = require('./routes/UsersRoute')
+const ordersRoutes = require('./routes/ordersRoute')
 dotenv.config()
 connectDb();
 const app = express();
@@ -18,10 +19,10 @@ app.get("/", (req, res) => {
 
 app.use("/api",productsRoutes);
 app.use("/api/users",usersRoutes);
-app.use("/api/orders", orderRoutes);
-// app.get("/api/config/paypal", (req, res) => {
-//   res.send(process.env.PAYPAL_CLIENT_ID);
-// });
+app.use("/api/orders", ordersRoutes);
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+});
 
 app.use(errorHandler)
 

@@ -61,8 +61,9 @@ const LoginPage = ( ) => {
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
+          <br/>
           <Button type="submit" varient="primary">
-            SING IN
+            SIGN IN
           </Button>
         </Form>
         <Row>
