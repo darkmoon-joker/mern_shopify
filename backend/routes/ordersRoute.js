@@ -3,7 +3,7 @@ const {
   addOrderItem,
   getOrderById,
   updateOrderToPaid,
-  getMyOrders,
+  getMyOrders
 } = require("../controllers/orderController");
 const { protect } = require("../middlewares/authMiddleware");
 const router = express.Router();

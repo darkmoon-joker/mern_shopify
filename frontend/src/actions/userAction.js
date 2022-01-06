@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { ORDER_LIST_MY_RESET } from "../constants/orderConstant";
+import { ORDER_LIST_MY_RESET } from "../constants/orderConstant";
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -19,7 +19,7 @@ import {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
-//   dispatch({ type: ORDER_LIST_MY_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_LOGOUT });
 };

@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/shared/Message";
 import Loader from "../components/shared/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userAction";
-// import { listMyOrders } from "../actions/orderAction";
-// import { ORDER_CREATE_REQUEST } from "../constants/orderConstant";
+import { listMyOrders } from "../actions/orderAction";
+import { ORDER_CREATE_REQUEST } from "../constants/orderConstant";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -27,8 +27,8 @@ const ProfilePage = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-//   const orderListMy = useSelector((state) => state.orderListMy);
-//   const { loading: loadingOrders, orders, error: errorOrders } = orderListMy;
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { loading: loadingOrders, orders, error: errorOrders } = orderListMy;
 
   const location=useLocation();
   const history=useNavigate();
@@ -39,7 +39,7 @@ const ProfilePage = () => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails("profile"));
-        // dispatch(listMyOrders());
+        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -91,7 +91,7 @@ const ProfilePage = () => {
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="confirmPassword">
-              <Form.Label>COnfirm Password</Form.Label>
+              <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Re-enter password"
@@ -104,7 +104,7 @@ const ProfilePage = () => {
             </Button>
           </Form>
         </Col>
-        {/* <Col md={9}>
+        <Col md={9}>
           <h1>My Orders</h1>
           {loadingOrders ? (
             <Loader />
@@ -158,7 +158,7 @@ const ProfilePage = () => {
               </tbody>
             </Table>
           )}
-        </Col> */}
+        </Col>
       </Row>
     </>
   );
