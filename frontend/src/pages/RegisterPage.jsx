@@ -15,10 +15,9 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const location=useLocation();
+  const location = useLocation();
   const redirect = location.search ? location.search.split("=")[1] : "/";
-  const history=useNavigate();
- 
+  const history = useNavigate();
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
@@ -28,11 +27,10 @@ const RegisterPage = () => {
     if (userInfo) {
       history(redirect);
     }
-  }, [ userInfo, redirect]);
+  }, [userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    //dispatch
     if (password !== confirmPassword) {
       setMessage("Password do not macth");
     } else {
@@ -41,9 +39,10 @@ const RegisterPage = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <FormContainer>
         <h1>Register</h1>
+        <br />
         {error && <Message varient="danger">{error}</Message>}
         {loading && <Loader />}
         {message && <Message variant="danger">{message}</Message>}
@@ -52,7 +51,7 @@ const RegisterPage = () => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="enter Name"
+              placeholder="Enter Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
@@ -61,7 +60,7 @@ const RegisterPage = () => {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type="email"
-              placeholder="enter email"
+              placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
@@ -70,7 +69,7 @@ const RegisterPage = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="enter password"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
@@ -84,20 +83,22 @@ const RegisterPage = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
+          <br />
           <Button type="submit" varient="primary">
-            SIGN IN
+            Sign Up
           </Button>
         </Form>
+        <br />
         <Row>
           <Col>
-            Have an account !
+            Have an account!{' '}
             <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
               Login
             </Link>
           </Col>
         </Row>
       </FormContainer>
-    </>
+    </React.Fragment>
   );
 };
 

@@ -3,27 +3,26 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Button, Image, ListGroupItem, Form, } from "react-bootstrap";
-import Rating from "../components/Rating";
 import { listProductDetails } from "../actions/productActions";
 import { useNavigate } from "react-router-dom";
 
-const ProductInfo = ({match}) => {
-    
-    const history=useNavigate();
+const ProductInfo = ({ match }) => {
+
+    const history = useNavigate();
     const { id } = useParams();
     const [qty, setQty] = useState(1);
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const productDetails = useSelector((state) => state.productDetails);
-    const { loading, error, product } = productDetails;
+    const { product } = productDetails;
 
-  useEffect(() => {
-    dispatch(listProductDetails(id));
-  }, [dispatch, match]);
+    useEffect(() => {
+        dispatch(listProductDetails(id));
+    }, [dispatch, match]);
 
-  const addToCartHandler = () => {
-  
-    history(`/cart/${id}?qty=${qty}`);
-  };
+    const addToCartHandler = () => {
+
+        history(`/cart/${id}?qty=${qty}`);
+    };
 
     return (
         <div>
@@ -37,13 +36,7 @@ const ProductInfo = ({match}) => {
                         <ListGroupItem>
                             <h3>{product.name}</h3>
                         </ListGroupItem>
-                        <ListGroupItem>
-                            <Rating
-                                value={product.rating}
-                                text={`${product.numReviews} Reviews`}
-                            />
-                        </ListGroupItem>
-                        <ListGroupItem>Price : ${product.price}</ListGroupItem>
+                        <ListGroupItem>Price : INR{' '}{product.price}</ListGroupItem>
                         <ListGroupItem>{product.description}</ListGroupItem>
                     </ListGroup>
                 </Col>
@@ -56,24 +49,24 @@ const ProductInfo = ({match}) => {
                             </Col>
                         </Row>
                     </ListGroupItem>
-                   
-                    {product.countInStock >0  && (
+
+                    {product.countInStock > 0 && (
                         <ListGroupItem>
-                        <Row>
-                            <Col>Qty</Col>
-                            
-                            <Form.Control
-                            as="select"
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                            >
-                            {[...Array(product.countInStock).keys()].map((x) => (
-                                <option key={x+1 } value={x+1 }>
-                                {x+1}
-                                </option>
-                            ))}
-                            </Form.Control>
-                        </Row>
+                            <Row>
+                                <Col>Qty</Col>
+
+                                <Form.Control
+                                    as="select"
+                                    value={qty}
+                                    onChange={(e) => setQty(e.target.value)}
+                                >
+                                    {[...Array(product.countInStock).keys()].map((x) => (
+                                        <option key={x + 1} value={x + 1}>
+                                            {x + 1}
+                                        </option>
+                                    ))}
+                                </Form.Control>
+                            </Row>
                         </ListGroupItem>
                     )}
 

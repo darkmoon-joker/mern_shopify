@@ -13,11 +13,11 @@ const PlaceOrderScreen = () => {
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
-  
+
   const addDecimal = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
-    cart.itemsPrice = addDecimal(
+  cart.itemsPrice = addDecimal(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
   cart.shippingPrice = addDecimal(cart.cartItems > 500 ? 0 : 50);
@@ -46,8 +46,7 @@ const PlaceOrderScreen = () => {
     if (success) {
       history(`/order/${order._id}`);
     }
-    //eslint-disable-next-line
-  }, [ success]);
+  }, [success]);
   return (
     <>
       <CheckOutStep step1 step2 step3 step4 />
@@ -88,7 +87,7 @@ const PlaceOrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} X ${item.price} = ${item.price}
+                          {item.qty} X {item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -107,19 +106,19 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>INR{' '}{cart.itemsPrice}</Col>
                 </Row>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col>INR{' '}{cart.shippingPrice}</Col>
                 </Row>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>INR{' '}{cart.taxPrice}</Col>
                 </Row>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>INR{' '}{cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>

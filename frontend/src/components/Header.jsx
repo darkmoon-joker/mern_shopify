@@ -14,11 +14,11 @@ const Header = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Navbar bg="dark" expand="lg" variant="dark" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Shopify</Navbar.Brand>
+            <Navbar.Brand><h3 style={{ display: "inline" }}>Shop</h3><b>ify</b></Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -51,7 +51,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    </React.Fragment>
   );
 };
 

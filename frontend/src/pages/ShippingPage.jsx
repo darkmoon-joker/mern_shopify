@@ -3,8 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FromContainer from "../components/shared/FromContainer";
 import { saveShippingAddress } from "../actions/cartAction";
-// import ChekcoutStep from "../components/shared/CheckoutStep";
-import CheckoutStep from "../components/shared/CheckoutStep";
 import { useNavigate } from "react-router-dom";
 
 const ShippingPage = () => {
@@ -12,7 +10,7 @@ const ShippingPage = () => {
 
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-  const history=useNavigate();
+  const history = useNavigate();
 
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
@@ -27,8 +25,7 @@ const ShippingPage = () => {
   };
 
   return (
-    <>
-      {/* <CheckoutStep step1 step2 /> */}
+    <React.Fragment>
       <FromContainer>
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="address">
@@ -52,10 +49,10 @@ const ShippingPage = () => {
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="postalcode">
-            <Form.Label>PostalCode</Form.Label>
+            <Form.Label>Pin-Code</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter postalcode"
+              placeholder="Enter pin-code"
               value={postalcode}
               onChange={(e) => setPostalcode(e.target.value)}
               required
@@ -71,12 +68,13 @@ const ShippingPage = () => {
               required
             ></Form.Control>
           </Form.Group>
+          <br />
           <Button type="submit" variant="primary">
-            continue
+            Continue
           </Button>
         </Form>
       </FromContainer>
-    </>
+    </React.Fragment>
   );
 };
 

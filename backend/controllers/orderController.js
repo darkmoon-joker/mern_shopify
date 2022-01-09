@@ -32,7 +32,6 @@ const addOrderItem = asyncHandler(async (req, res) => {
   }
 });
 
-//getOrderByID
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     "user",
@@ -46,7 +45,6 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
-//paidendpoint
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
   if (order) {

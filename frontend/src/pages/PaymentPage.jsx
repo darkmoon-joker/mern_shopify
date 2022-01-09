@@ -8,13 +8,13 @@ import { useNavigate } from "react-router-dom";
 const PaymentPage = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-  const history=useNavigate();
+  const history = useNavigate();
   if (!shippingAddress.address) {
     history("/shipping");
   }
 
   const dispatch = useDispatch();
-  
+
   const [paymentMethod, setPaymentMethod] = useState("paypal");
   const submitHandler = (e) => {
     e.preventDefault();
@@ -39,6 +39,7 @@ const PaymentPage = () => {
             ></Form.Check>
           </Col>
         </Form.Group>
+        <br />
         <Button type="submit" variant="primary">
           Continue
         </Button>

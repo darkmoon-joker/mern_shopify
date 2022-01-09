@@ -9,36 +9,34 @@ import FormContainer from "../components/shared/FromContainer";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const LoginPage = ( ) => {
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const location = useLocation();
   const redirect = location.search ? location.search.split("=")[1] : "/";
-//  
-
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
 
-  const history=useNavigate();
+  const history = useNavigate();
   useEffect(() => {
     if (userInfo) {
-        console.log(redirect);
+      console.log(redirect);
       history(redirect);
     }
-  }, [ userInfo, redirect]);
+  }, [userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    //dispatch
     dispatch(login(email, password));
   };
 
   return (
-    <>
+    <React.Fragment>
       <FormContainer>
-        <h1>SIGN IN</h1>
+        <h1>Sign In</h1>
+        <br />
         {error && <Message varient="danger">{error}</Message>}
         {loading && <Loader />}
         {Loader}
@@ -47,7 +45,7 @@ const LoginPage = ( ) => {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type="email"
-              placeholder="enter email"
+              placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
@@ -56,29 +54,27 @@ const LoginPage = ( ) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="enter password"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <br/>
+          <br />
           <Button type="submit" varient="primary">
-            SIGN IN
+            Sign In
           </Button>
         </Form>
+        <br />
         <Row>
-           {/* { console.log(redirect)} */}
           <Col>
-            New Customer ?
-
-            
+            New Customer?{' '}
             <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
               Register
             </Link>
           </Col>
         </Row>
       </FormContainer>
-    </>
+    </React.Fragment>
   );
 };
 

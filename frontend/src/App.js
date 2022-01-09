@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
 import ProductInfo from "./pages/ProductInfo"
 import CartPage from "./pages/CartPage"
 import LoginPage from "./pages/LoginPage"
@@ -20,6 +19,7 @@ function App() {
   return (
     <React.Fragment>
       <Header />
+      <br />
       <main style={{ minHeight: "80vh" }}>
         <Container>
           <Routes>
@@ -29,17 +29,18 @@ function App() {
             <Route path="/payment" element={<PaymentPage />} exact />
             <Route path="/order/:id" element={<OrderPage />} exact />
             <Route path="/profile" element={<ProfilePage />} exact />
-            <Route path="/register" element={<RegisterPage />}  />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/product/:id" element={<ProductInfo />} exact />
             <Route path="/cart">
-            <Route path=":id" element={<CartPage />} />
-             <Route path="" element={<CartPage />} />
+              <Route path=":id" element={<CartPage />} />
+              <Route path="" element={<CartPage />} />
             </Route>
             <Route path="/" element={<HomePage />} exact />
-            
+
           </Routes>
         </Container>
       </main>
+      <br />
       <Footer />
     </React.Fragment>
   );
